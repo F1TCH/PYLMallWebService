@@ -9,31 +9,28 @@ using EWDTWebServiceApp.Models;
 
 namespace EWDTWebServiceApp.Models
 {
-    public class DBManager
+    public class RentDBManager
     {
-        public static ArrayList GetAllMusic()
+        public static ArrayList GetAllBid()
         {
             ArrayList result = new ArrayList();
             SqlConnection conn = null;
             try
             {
                 conn = new SqlConnection();
-                conn.ConnectionString = ConfigurationManager.ConnectionStrings["MusicDBConnectionString"].ConnectionString;
+                conn.ConnectionString = ConfigurationManager.ConnectionStrings["EWDTdbConnectionString"].ConnectionString;
                 conn.Open();
                 SqlCommand comm = new SqlCommand();
                 comm.Connection = conn;
-                comm.CommandText = "SELECT * from music";
+                comm.CommandText = "SELECT * from Bidding";
                 SqlDataReader dr = comm.ExecuteReader();
                 while (dr.Read())
                 {
-                    Class m = new Class();
-                    m.Musicid = (int)dr["Musicid"];
-                    m.Title = (string)dr["Title"];
-                    m.Genre = (string)dr["Genre"];
-                    m.Imagefile = (string)dr["Imagefile"];
-                    m.Price = Convert.ToDouble((decimal)dr["Price"]);
-                    m.Username = (string)dr["Username"];
-                    result.Add(m);
+                    BidClass b = new BidClass();
+                    b.BiddingAmt = (double)dr["BiddingAmt"];
+                    b.Date = (string)dr["Date"];
+                    b.Time = (string)dr["Time"];
+                    result.Add(b);
                 }
                 dr.Close();
                 conn.Close();
@@ -44,8 +41,8 @@ namespace EWDTWebServiceApp.Models
             }
             return result;
         }
-
-        public static Class GetMusicById(int id)
+        
+        public static BidClass GetBidBy(int id)
         {
             Class m = null;
             SqlConnection conn = null;
