@@ -389,7 +389,7 @@ namespace EWDTWebServiceApp.Models
                 throw e;
             }
 
-            return b;
+            return f;
         }
 
         public static int InsertFloor(FloorPlanClass f)

@@ -9,9 +9,9 @@ namespace EWDTWebServiceApp.Models
     interface IBidRepository
     {
         IEnumerable<BidClass> GetAll();
-        BidClass GetByBid(double bid);
+        BidClass GetByBid(string bid);
         BidClass Add(BidClass item);
-        void Remove(double bid);
+        void Remove(string bid);
         bool Update(BidClass item);
     }
 }
