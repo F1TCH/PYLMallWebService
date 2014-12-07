@@ -16,7 +16,7 @@ namespace EWDTWebServiceApp.Models
         {
             return RentDBManager.GetAllBid().Cast<BidClass>();
         }
-        public BidClass GetByBid(string bid)
+        public BidClass GetByBid(double bid)
         {
             return RentDBManager.GetBidByBidAmt(bid);
         }
@@ -35,7 +35,7 @@ namespace EWDTWebServiceApp.Models
                 return item;
             }
         }
-        public void Remove(string bid)
+        public void Remove(double bid)
         {
             RentDBManager.DeleteBid(bid);
         }
