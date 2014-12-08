@@ -216,7 +216,7 @@ namespace EWDTWebServiceApp.Models
             return result;
         }
 
-        public static BidClass GetBidByBidAmt(string bid)
+        public static BidClass GetBidByBidAmt(double bid)
         {
             BidClass b = null;
             SqlConnection conn = null;
@@ -299,7 +299,7 @@ namespace EWDTWebServiceApp.Models
             }
             return rowsupdated;
         }
-        public static int DeleteBid(string bid)
+        public static int DeleteBid(double bid)
         {
             int rowsdeleted = 0;
 
