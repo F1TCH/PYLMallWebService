@@ -21,7 +21,7 @@ namespace EWDTWebServiceApp.Models
                 conn.Open();
                 SqlCommand comm = new SqlCommand();
                 comm.Connection = conn;
-                comm.CommandText = "SELECT * from User";
+                comm.CommandText = "SELECT * from [User]";
                 SqlDataReader dr = comm.ExecuteReader();
                 while (dr.Read())
                 {
@@ -34,7 +34,7 @@ namespace EWDTWebServiceApp.Models
                     m.HandphoneNo = (int)dr["HandphoneNo"];
                     m.Gender = (string)dr["Gender"];
                     m.Address = (string)dr["Address"];
-                    m.DoB = (string)dr["DoB"];
+                    //m.DoB = (string)dr["DoB"];
                     m.SQ1 = (string)dr["SQ1"];
                     m.SQ2 = (string)dr["SQ2"];
                     m.SQAns1 = (string)dr["SQAns1"];
@@ -174,7 +174,7 @@ namespace EWDTWebServiceApp.Models
                 conn.Open();
                 SqlCommand comm = new SqlCommand();
                 comm.Connection = conn;
-                comm.CommandText = "Delete from User where Username=@Username";
+                comm.CommandText = "Delete from [User] where Username=@Username";
                 comm.Parameters.AddWithValue("@Username", user);
                 rowsdeleted = comm.ExecuteNonQuery();
             }
