@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
@@ -199,5 +200,40 @@ namespace EWDTWebService.Class
             }
             return rowsdeleted;
         }
+
+        public static ArrayList GetAllUnit()
+        {
+            ArrayList result = new ArrayList();
+            SqlConnection conn = null;
+            try
+            {
+                conn = new SqlConnection();
+                conn.ConnectionString = ConfigurationManager.ConnectionStrings["EWDTdbConnectionString"].ConnectionString;
+                conn.Open();
+                SqlCommand comm = new SqlCommand();
+                comm.Connection = conn;
+                comm.CommandText = "SELECT * from FloorPlan";
+                SqlDataReader dr = comm.ExecuteReader();
+                while (dr.Read())
+                {
+                    FloorPlan f = new FloorPlan();
+                    f.Unit = (string)dr["Unit"];
+                    f.UnitLevel = (int)dr["UnitLevel"];
+                    f.Name = (string)dr["Name"];
+                    f.Price = Convert.ToDouble((decimal)dr["Price"]);
+                    f.Condition = (string)dr["Condition"];
+                    f.Imagefile = (string)dr["Imagefile"];
+                    result.Add(f);
+                }
+                dr.Close();
+                conn.Close();
+            }
+            catch (SqlException e)
+            {
+                throw e;
+            }
+            return result;
+        }
+
     }
 }

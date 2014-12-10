@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EWDTWebService.Class;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +9,6 @@ namespace EWDTWebService.IRepository
 {
     interface IFloorPlanRepository
     {
+        IEnumerable<FloorPlan> GetAll();
     }
 }
