@@ -26,16 +26,16 @@ namespace EWDTWebService.Controllers
             return item;
         }
 
-        public UserAccount GetEmailbyUsername(string id)
-        {
-            UserAccount item = repository.GetEmailbyUsername(id);
+        //public UserAccount GetEmailbyUsername(string id)
+        //{
+        //    UserAccount item = repository.GetEmailbyUsername(id);
 
-            if (item == null)
-            {
-                throw new HttpResponseException(HttpStatusCode.NotFound);
-            }
-            return item;
-        }
+        //    if (item == null)
+        //    {
+        //        throw new HttpResponseException(HttpStatusCode.NotFound);
+        //    }
+        //    return item;
+        //}
         //register
         public HttpResponseMessage PostUser(UserAccount item)
         {

@@ -36,10 +36,10 @@ namespace EWDTWebService.Repository
             return RentDBManager.GetUserbyUsername(id);
         }
 
-        public UserAccount GetEmailbyUsername(string id) //login
-        {
-            return RentDBManager.GetEmailbyUsername(id);
-        }
+        //public UserAccount GetEmailbyUsername(string id) //login
+        //{
+        //    return RentDBManager.GetEmailbyUsername(id);
+        //}
 
         public void Remove(string id)//delete
         {
