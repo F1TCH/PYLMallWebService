@@ -135,3 +135,4 @@ C:\Users\Eldrich\Documents\GitHub\PYLMallWebService\EWDTWebServiceApp\EWDTWebSer
 C:\Users\Eldrich\Documents\GitHub\PYLMallWebService\EWDTWebServiceApp\EWDTWebServiceApp\bin\zh-Hant\System.Spatial.resources.dll
 C:\Users\Eldrich\Documents\GitHub\PYLMallWebService\EWDTWebServiceApp\EWDTWebServiceApp\obj\Debug\EWDTWebServiceApp.dll
 C:\Users\Eldrich\Documents\GitHub\PYLMallWebService\EWDTWebServiceApp\EWDTWebServiceApp\obj\Debug\EWDTWebServiceApp.pdb
+C:\Users\User\Documents\GitHub\PYLMallWebService\EWDTWebServiceApp\EWDTWebServiceApp\obj\Debug\EWDTWebServiceApp.csprojResolveAssemblyReference.cache

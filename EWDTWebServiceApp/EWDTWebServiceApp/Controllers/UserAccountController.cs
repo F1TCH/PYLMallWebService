@@ -4,11 +4,11 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using EWDTWebService.Repository;
-using EWDTWebService.Class;
-using EWDTWebService.IRepository;
+using EWDTWebServiceApp.Repository;
+using EWDTWebServiceApp.Class;
+using EWDTWebServiceApp.IRepository;
 
-namespace EWDTWebService.Controllers
+namespace EWDTWebServiceApp.Controllers
 {
     public class UserAccountController : ApiController
     {

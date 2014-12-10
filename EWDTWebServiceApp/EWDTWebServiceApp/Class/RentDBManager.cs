@@ -5,7 +5,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 
-namespace EWDTWebService.Class
+namespace EWDTWebServiceApp.Class
 {
     public class RentDBManager
     {

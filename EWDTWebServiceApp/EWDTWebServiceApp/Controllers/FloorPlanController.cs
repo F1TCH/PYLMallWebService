@@ -5,7 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 
-namespace EWDTWebService.Controllers
+namespace EWDTWebServiceApp.Controllers
 {
     public class FloorPlanController : ApiController
     {

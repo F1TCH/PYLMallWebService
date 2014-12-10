@@ -1,11 +1,12 @@
-﻿using EWDTWebService.Class;
+﻿using EWDTWebServiceApp.Class;
+using EWDTWebServiceApp.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EWDTWebService.IRepository
+namespace EWDTWebServiceApp.IRepository
 {
     interface IUserAccountRepository
     {

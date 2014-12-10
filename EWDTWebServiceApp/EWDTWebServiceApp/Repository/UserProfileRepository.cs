@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace EWDTWebService.Repository
+namespace EWDTWebServiceApp.Repository
 {
     public class UserProfileRepository
     {
