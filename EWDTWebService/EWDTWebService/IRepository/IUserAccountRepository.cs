@@ -9,7 +9,7 @@ namespace EWDTWebService.IRepository
 {
     interface IUserAccountRepository
     {
-        UserAccount GetUser(string user);
+        UserAccount GetUserByUsername(string id); //login
         UserAccount AddUser(UserAccount user);
         void DeleteUser(string user);
         bool UpdateUserPassword(UserAccount password);

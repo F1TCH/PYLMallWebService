@@ -14,9 +14,16 @@ namespace EWDTWebService.Controllers
     {
         static readonly IUserAccountRepository repository = new UserAccountRepository();
 
-        public UserAccount GetUser(string user)
+        //Login
+        public UserAccount GetUserByUsername(string id)
         {
-            return RentDBManager.GetUserbyUsername(user);
+            UserAccount item = repository.GetUserByUsername(id);
+
+            if (item == null)
+            {
+                throw new HttpResponseException(HttpStatusCode.NotFound);
+            }
+            return item;
         }
 
         public UserAccount AddUser(UserAccount user)

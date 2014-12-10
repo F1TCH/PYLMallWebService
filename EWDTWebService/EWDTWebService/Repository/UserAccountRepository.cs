@@ -13,7 +13,7 @@ namespace EWDTWebService.Repository
         {
 
         }
-
+        
         public UserAccount AddUser(UserAccount user)
         {
             if (user == null)
@@ -27,9 +27,9 @@ namespace EWDTWebService.Repository
             else return user;
         }
 
-        public UserAccount GetUser(string user)
+        public UserAccount GetUserByUsername(string id) //login
         {
-            return RentDBManager.GetUserbyUsername(user);
+            return RentDBManager.GetUserbyUsername(id);
         }
 
         public void DeleteUser(string username)

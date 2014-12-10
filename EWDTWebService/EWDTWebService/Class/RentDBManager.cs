@@ -38,14 +38,14 @@ namespace EWDTWebService.Class
 
             return successful;
         }
-        public static UserAccount GetUserbyUsername(string user)
+        public static UserAccount GetUserbyUsername(string user) //login
         {
             UserAccount m = null;
             SqlConnection conn = null;
             try
             {
                 conn = new SqlConnection();
-                conn.ConnectionString = ConfigurationManager.ConnectionStrings["MusicDBConnectionString"].ConnectionString;
+                conn.ConnectionString = ConfigurationManager.ConnectionStrings["EWDTdbConnectionString"].ConnectionString;
                 conn.Open();
                 SqlCommand comm = new SqlCommand();
                 comm.Connection = conn;
