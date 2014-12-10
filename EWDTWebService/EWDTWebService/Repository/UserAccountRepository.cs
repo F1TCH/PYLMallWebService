@@ -13,18 +13,22 @@ namespace EWDTWebService.Repository
         {
 
         }
-        
-        public UserAccount AddUser(UserAccount user)
+
+        public UserAccount Add(UserAccount item)//register
         {
-            if (user == null)
+            if (item == null)
             {
-                throw new ArgumentNullException("user");
+                throw new ArgumentNullException("item");
             }
-            if (RentDBManager.InsertUser(user) == 0)
+            if (RentDBManager.InsertUser(item) == 0)
             {
                 return null;
             }
-            else return user;
+
+            else
+            {
+                return item;
+            }
         }
 
         public UserAccount GetUserByUsername(string id) //login
@@ -32,9 +36,14 @@ namespace EWDTWebService.Repository
             return RentDBManager.GetUserbyUsername(id);
         }
 
-        public void DeleteUser(string username)
+        //public UserAccount GetEmailbyUsername(string id) //login
+        //{
+        //    return RentDBManager.GetEmailbyUsername(id);
+        //}
+
+        public void Remove(string id)//delete
         {
-            RentDBManager.DeleteUser(username);
+            RentDBManager.DeleteUser(id);
         }
 
         public bool UpdateUserPassword(UserAccount password)
@@ -43,11 +52,11 @@ namespace EWDTWebService.Repository
             {
                 throw new ArgumentNullException("password");
             }
-            if(RentDBManager.UpdateUserPassword(password)==0)
+            if (RentDBManager.UpdateUserPassword(password) == 0)
             {
                 return false;
             }
-            else 
+            else
             {
                 return true;
             }

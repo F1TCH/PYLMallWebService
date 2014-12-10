@@ -9,35 +9,35 @@ namespace EWDTWebService.Class
 {
     public class RentDBManager
     {
-        public static bool Login(string input_username, string input_password)
-        {
-            bool successful = false;
+        //public static bool Login(string input_username, string input_password)
+        //{
+        //    bool successful = false;
 
-            SqlConnection conn = null;
-            try
-            {
-                conn = new SqlConnection();
-                conn.ConnectionString = ConfigurationManager.
-                    ConnectionStrings["EWDTdbConnectionString"].ConnectionString;
-                conn.Open();
-                SqlCommand comm = new SqlCommand();
-                comm.Connection = conn;
-                comm.CommandText = "SELECT * FROM UserAccount  WHERE username=@username and password=@password";
-                comm.Parameters.AddWithValue("@username", input_username);
-                comm.Parameters.AddWithValue("@password", input_password);
-                SqlDataReader dr = comm.ExecuteReader();
-                if (dr.Read()) //dr.Read() will return true if there is at least one row
-                {
-                    successful = true;
-                }
-            }
-            catch (SqlException e)
-            {
-                throw e;
-            }
+        //    SqlConnection conn = null;
+        //    try
+        //    {
+        //        conn = new SqlConnection();
+        //        conn.ConnectionString = ConfigurationManager.
+        //            ConnectionStrings["EWDTdbConnectionString"].ConnectionString;
+        //        conn.Open();
+        //        SqlCommand comm = new SqlCommand();
+        //        comm.Connection = conn;
+        //        comm.CommandText = "SELECT * FROM UserAccount  WHERE username=@username and password=@password";
+        //        comm.Parameters.AddWithValue("@username", input_username);
+        //        comm.Parameters.AddWithValue("@password", input_password);
+        //        SqlDataReader dr = comm.ExecuteReader();
+        //        if (dr.Read()) //dr.Read() will return true if there is at least one row
+        //        {
+        //            successful = true;
+        //        }
+        //    }
+        //    catch (SqlException e)
+        //    {
+        //        throw e;
+        //    }
 
-            return successful;
-        }
+        //    return successful;
+        //}
         public static UserAccount GetUserbyUsername(string user) //login
         {
             UserAccount m = null;
@@ -69,7 +69,41 @@ namespace EWDTWebService.Class
             return m;
 
         }
-        public static int InsertUser(UserAccount u)
+
+        public static UserAccount GetEmailbyUsername(string user) //login
+        {
+            UserAccount m = null;
+            SqlConnection conn = null;
+            try
+            {
+                conn = new SqlConnection();
+                conn.ConnectionString = ConfigurationManager.ConnectionStrings["EWDTdbConnectionString"].ConnectionString;
+                conn.Open();
+                SqlCommand comm = new SqlCommand();
+                comm.Connection = conn;
+                comm.CommandText = "SELECT * FROM UserAccount WHERE username=@username";
+                comm.Parameters.AddWithValue("@username", user);
+                SqlDataReader dr = comm.ExecuteReader();
+                if (dr.Read())
+                {
+                    m = new UserAccount();
+                    m.username = (string)dr["username"];
+                    m.password = (string)dr["password"];
+                    m.email = (string)dr["email"];
+                }
+                dr.Close();
+                conn.Close();
+            }
+            catch (SqlException e)
+            {
+                throw e;
+            }
+
+            return m;
+
+        }
+
+        public static int InsertUser(UserAccount u)//register
         {
             int rowsinserted = 0;
 
@@ -81,8 +115,7 @@ namespace EWDTWebService.Class
                 conn.Open();
                 SqlCommand comm = new SqlCommand();
                 comm.Connection = conn;
-                comm.CommandText = "INSERT INTO User(Username,Password,Email)" +
-                    " VALUES (@Username,@Password,@Email)";
+                comm.CommandText = "INSERT INTO UserAccount(username,password,email)" + " VALUES (@Username,@Password,@Email)";
                 comm.Parameters.AddWithValue("@Username", u.username);
                 comm.Parameters.AddWithValue("@Password", u.password);
                 comm.Parameters.AddWithValue("@Email", u.email);
@@ -108,7 +141,7 @@ namespace EWDTWebService.Class
                 conn.Open();
                 SqlCommand comm = new SqlCommand();
                 comm.Connection = conn;
-                comm.CommandText = "UPDATE User SET Password=@Password WHERE username=@username";
+                comm.CommandText = "UPDATE UserAccount SET Password=@Password WHERE username=@username";
                 comm.Parameters.AddWithValue("@Username", u.username);
                 comm.Parameters.AddWithValue("@Password", u.password);
                 rowsupdated = comm.ExecuteNonQuery();
@@ -132,7 +165,7 @@ namespace EWDTWebService.Class
                 conn.Open();
                 SqlCommand comm = new SqlCommand();
                 comm.Connection = conn;
-                comm.CommandText = "UPDATE User SET email=@email WHERE username=@username";
+                comm.CommandText = "UPDATE UserAccount SET email=@email WHERE username=@username";
                 comm.Parameters.AddWithValue("@Username", u.username);
                 comm.Parameters.AddWithValue("@email", u.email);
                 rowsupdated = comm.ExecuteNonQuery();
@@ -156,7 +189,7 @@ namespace EWDTWebService.Class
                 conn.Open();
                 SqlCommand comm = new SqlCommand();
                 comm.Connection = conn;
-                comm.CommandText = "Delete from [User] where Username=@Username";
+                comm.CommandText = "Delete from [UserAccount] where Username=@Username";
                 comm.Parameters.AddWithValue("@Username", user);
                 rowsdeleted = comm.ExecuteNonQuery();
             }
@@ -166,9 +199,5 @@ namespace EWDTWebService.Class
             }
             return rowsdeleted;
         }
-        //public static int InsertUserProfile(UserAccount u)
-        //{
-
-        //}
     }
 }

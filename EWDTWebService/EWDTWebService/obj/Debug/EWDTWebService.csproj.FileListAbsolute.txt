@@ -129,6 +129,6 @@ C:\Users\Eldrich\Documents\GitHub\PYLMallWebService\EWDTWebService\EWDTWebServic
 C:\Users\Eldrich\Documents\GitHub\PYLMallWebService\EWDTWebService\EWDTWebService\bin\ru\System.Spatial.resources.dll
 C:\Users\Eldrich\Documents\GitHub\PYLMallWebService\EWDTWebService\EWDTWebService\bin\zh-Hans\System.Spatial.resources.dll
 C:\Users\Eldrich\Documents\GitHub\PYLMallWebService\EWDTWebService\EWDTWebService\bin\zh-Hant\System.Spatial.resources.dll
-C:\Users\Eldrich\Documents\GitHub\PYLMallWebService\EWDTWebService\EWDTWebService\obj\Debug\EWDTWebService.csprojResolveAssemblyReference.cache
 C:\Users\Eldrich\Documents\GitHub\PYLMallWebService\EWDTWebService\EWDTWebService\obj\Debug\EWDTWebService.dll
 C:\Users\Eldrich\Documents\GitHub\PYLMallWebService\EWDTWebService\EWDTWebService\obj\Debug\EWDTWebService.pdb
+C:\Users\Eldrich\Documents\GitHub\PYLMallWebService\EWDTWebService\EWDTWebService\obj\Debug\EWDTWebService.csprojResolveAssemblyReference.cache
