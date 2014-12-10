@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EWDTWebService.IRepository
 {
-    interface IBidRepository
+    interface IUserProfileRepository
     {
     }
 }

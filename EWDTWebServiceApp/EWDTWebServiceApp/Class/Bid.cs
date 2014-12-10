@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace EWDTWebServiceApp.Models
+namespace EWDTWebService.Class
 {
-    public class BidClass
+    public class Bid
     {
         public double BiddingAmt { get; set; }
         public string Date { get; set; }

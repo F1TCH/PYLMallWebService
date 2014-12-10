@@ -3,56 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace EWDTWebServiceApp.Models
+namespace EWDTWebService.Repository
 {
-    public class BidRepository : IBidRepository
+    public class BidRepository
     {
-        public BidRepository()
-        {
-
-        }
-
-        public IEnumerable<BidClass> GetAll()
-        {
-            return RentDBManager.GetAllBid().Cast<BidClass>();
-        }
-        public BidClass GetByBid(double bid)
-        {
-            return RentDBManager.GetBidByBidAmt(bid);
-        }
-        public BidClass Add(BidClass item)
-        {
-            if (item == null)
-            {
-                throw new ArgumentNullException("item");
-            }
-            if (RentDBManager.InsertBid(item) == 0)
-            {
-                return null;
-            }
-            else
-            {
-                return item;
-            }
-        }
-        public void Remove(double bid)
-        {
-            RentDBManager.DeleteBid(bid);
-        }
-        public bool Update(BidClass item)
-        {
-            if (item == null)
-            {
-                throw new ArgumentNullException("item");
-            }
-            if (RentDBManager.UpdateBid(item) == 0)
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
-        }
     }
 }

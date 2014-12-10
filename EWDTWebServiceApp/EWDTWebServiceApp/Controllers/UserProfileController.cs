@@ -7,7 +7,7 @@ using System.Web.Http;
 
 namespace EWDTWebService.Controllers
 {
-    public class BidController : ApiController
+    public class UserProfileController : ApiController
     {
     }
 }

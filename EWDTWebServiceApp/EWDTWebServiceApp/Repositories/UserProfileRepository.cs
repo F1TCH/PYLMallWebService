@@ -5,7 +5,7 @@ using System.Web;
 
 namespace EWDTWebService.Repository
 {
-    public class FloorPlanRepository
+    public class UserProfileRepository
     {
     }
 }

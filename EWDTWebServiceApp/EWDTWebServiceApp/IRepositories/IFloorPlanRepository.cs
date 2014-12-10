@@ -4,14 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EWDTWebServiceApp.Models
+namespace EWDTWebService.IRepository
 {
     interface IFloorPlanRepository
     {
-        IEnumerable<FloorPlanClass> GetAll();
-        FloorPlanClass GetByUnit(string unit);
-        FloorPlanClass Add(FloorPlanClass item);
-        void Remove(string unit);
-        bool Update(FloorPlanClass item);
     }
 }

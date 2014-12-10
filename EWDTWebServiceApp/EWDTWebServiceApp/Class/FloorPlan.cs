@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace EWDTWebServiceApp.Models
+namespace EWDTWebService.Class
 {
-    public class FloorPlanClass
+    public class FloorPlan
     {
         public string Unit { get; set; }
         public int UnitLevel { get; set; }

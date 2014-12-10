@@ -1,4 +1,3 @@
-C:\Users\User\Documents\GitHub\PYLMallWebService\EWDTWebServiceApp\EWDTWebServiceApp\obj\Debug\EWDTWebServiceApp.csprojResolveAssemblyReference.cache
 C:\Users\Eldrich\Documents\GitHub\PYLMallWebService\EWDTWebServiceApp\EWDTWebServiceApp\obj\Debug\EWDTWebServiceApp.csprojResolveAssemblyReference.cache
 C:\Users\User\Documents\GitHub\PYLMallWebService\EWDTWebServiceApp\EWDTWebServiceApp\bin\EWDTWebServiceApp.dll
 C:\Users\User\Documents\GitHub\PYLMallWebService\EWDTWebServiceApp\EWDTWebServiceApp\bin\EWDTWebServiceApp.pdb
