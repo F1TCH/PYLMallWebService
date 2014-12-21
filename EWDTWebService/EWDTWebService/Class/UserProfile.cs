@@ -7,15 +7,15 @@ namespace EWDTWebService.Class
 {
     public class UserProfile
     {
-        private string nric { get; set; }
-        private int Telno { get; set; }
-        private int Handphno { get; set; }
-        private string gender { get; set; }
-        private string address { get; set; }
-        private string DoB { get; set; }
-        private string SQ1 { get; set; }
-        private string SQ2 { get; set; }
-        private string SQAns1 { get; set; }
-        private string SQAns2 { get; set; }
+        public string nric { get; set; }
+        public int Telno { get; set; }
+        public int Handphno { get; set; }
+        public string gender { get; set; }
+        public string address { get; set; }
+        public string DoB { get; set; }
+        public string SQ1 { get; set; }
+        public string SQ2 { get; set; }
+        public string SQAns1 { get; set; }
+        public string SQAns2 { get; set; }
     }
 }

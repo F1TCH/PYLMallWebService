@@ -10,38 +10,9 @@ namespace EWDTWebService.Class
 {
     public class RentDBManager
     {
-        //public static bool Login(string input_username, string input_password)
-        //{
-        //    bool successful = false;
-
-        //    SqlConnection conn = null;
-        //    try
-        //    {
-        //        conn = new SqlConnection();
-        //        conn.ConnectionString = ConfigurationManager.
-        //            ConnectionStrings["EWDTdbConnectionString"].ConnectionString;
-        //        conn.Open();
-        //        SqlCommand comm = new SqlCommand();
-        //        comm.Connection = conn;
-        //        comm.CommandText = "SELECT * FROM UserAccount  WHERE username=@username and password=@password";
-        //        comm.Parameters.AddWithValue("@username", input_username);
-        //        comm.Parameters.AddWithValue("@password", input_password);
-        //        SqlDataReader dr = comm.ExecuteReader();
-        //        if (dr.Read()) //dr.Read() will return true if there is at least one row
-        //        {
-        //            successful = true;
-        //        }
-        //    }
-        //    catch (SqlException e)
-        //    {
-        //        throw e;
-        //    }
-
-        //    return successful;
-        //}
-        public static UserAccount GetUserbyUsername(string user) //login
+        public static UserProfile GetProfilebyUsername(string user) //get user profile
         {
-            UserAccount m = null;
+            UserProfile m = null;
             SqlConnection conn = null;
             try
             {
@@ -50,14 +21,22 @@ namespace EWDTWebService.Class
                 conn.Open();
                 SqlCommand comm = new SqlCommand();
                 comm.Connection = conn;
-                comm.CommandText = "SELECT * FROM UserAccount WHERE username=@username";
+                comm.CommandText = "SELECT * FROM UserProfile WHERE nric=@nric";
                 comm.Parameters.AddWithValue("@username", user);
                 SqlDataReader dr = comm.ExecuteReader();
                 if (dr.Read())
                 {
-                    m = new UserAccount();
-                    m.username = (string)dr["username"];
-                    m.password = (string)dr["password"];
+                    m = new UserProfile();
+                    m.nric = (string)dr["nric"];
+                    m.Telno = Convert.ToInt32((int)dr["Telno"]);
+                    m.Handphno = Convert.ToInt32((int)dr["Handphno"]);
+                    m.gender = (string)dr["gender"];
+                    m.address = (string)dr["address"];
+                    m.DoB = (string)dr["DoB"];
+                    m.SQ1 = (string)dr["SQ1"];
+                    m.SQ2 = (string)dr["SQ2"];
+                    m.SQAns1 = (string)dr["SQAns1"];
+                    m.SQAns2 = (string)dr["SQAns2"];
                 }
                 dr.Close();
                 conn.Close();
@@ -71,40 +50,7 @@ namespace EWDTWebService.Class
 
         }
 
-        public static UserAccount GetEmailbyUsername(string user) //login
-        {
-            UserAccount m = null;
-            SqlConnection conn = null;
-            try
-            {
-                conn = new SqlConnection();
-                conn.ConnectionString = ConfigurationManager.ConnectionStrings["EWDTdbConnectionString"].ConnectionString;
-                conn.Open();
-                SqlCommand comm = new SqlCommand();
-                comm.Connection = conn;
-                comm.CommandText = "SELECT * FROM UserAccount WHERE username=@username";
-                comm.Parameters.AddWithValue("@username", user);
-                SqlDataReader dr = comm.ExecuteReader();
-                if (dr.Read())
-                {
-                    m = new UserAccount();
-                    m.username = (string)dr["username"];
-                    m.password = (string)dr["password"];
-                    m.email = (string)dr["email"];
-                }
-                dr.Close();
-                conn.Close();
-            }
-            catch (SqlException e)
-            {
-                throw e;
-            }
-
-            return m;
-
-        }
-
-        public static int InsertUser(UserAccount u)//register
+        public static int InsertUserProfile(UserProfile u)//create profile
         {
             int rowsinserted = 0;
 
@@ -116,10 +62,18 @@ namespace EWDTWebService.Class
                 conn.Open();
                 SqlCommand comm = new SqlCommand();
                 comm.Connection = conn;
-                comm.CommandText = "INSERT INTO UserAccount(username,password,email)" + " VALUES (@Username,@Password,@Email)";
-                comm.Parameters.AddWithValue("@Username", u.username);
-                comm.Parameters.AddWithValue("@Password", u.password);
-                comm.Parameters.AddWithValue("@Email", u.email);
+                comm.CommandText = "INSERT INTO UserProfile(nric,Telno,Handphno,gender,address,DoB,SQ1,SQ2,SQAns1,SQAns2)"
+                    + " VALUES (@nric,@Telno,@Handphno,@gender,@address,@DoB,@SQ1,@SQ2,@SQAns1,@SQAns2)";
+                comm.Parameters.AddWithValue("@nric", u.nric);
+                comm.Parameters.AddWithValue("@Telno", u.Telno);
+                comm.Parameters.AddWithValue("@Handphno", u.Handphno);
+                comm.Parameters.AddWithValue("@gender", u.gender);
+                comm.Parameters.AddWithValue("@address", u.address);
+                comm.Parameters.AddWithValue("@DoB", u.DoB);
+                comm.Parameters.AddWithValue("@SQ1", u.SQ1);
+                comm.Parameters.AddWithValue("@SQ2", u.SQ2);
+                comm.Parameters.AddWithValue("@SQAns1", u.SQAns1);
+                comm.Parameters.AddWithValue("@SQAns2", u.SQAns2);
                 rowsinserted = comm.ExecuteNonQuery();
                 conn.Close();
             }
@@ -130,55 +84,7 @@ namespace EWDTWebService.Class
             return rowsinserted;
         }
 
-        public static int UpdateUserPassword(UserAccount u)
-        {
-            int rowsupdated = 0;
-
-            SqlConnection conn = null;
-            try
-            {
-                conn = new SqlConnection();
-                conn.ConnectionString = ConfigurationManager.ConnectionStrings["EWDTdbConnectionString"].ConnectionString;
-                conn.Open();
-                SqlCommand comm = new SqlCommand();
-                comm.Connection = conn;
-                comm.CommandText = "UPDATE UserAccount SET Password=@Password WHERE username=@username";
-                comm.Parameters.AddWithValue("@Username", u.username);
-                comm.Parameters.AddWithValue("@Password", u.password);
-                rowsupdated = comm.ExecuteNonQuery();
-                conn.Close();
-            }
-            catch (SqlException e)
-            {
-                throw e;
-            }
-            return rowsupdated;
-        }
-        public static int UpdateUserEmail(UserAccount u)
-        {
-            int rowsupdated = 0;
-
-            SqlConnection conn = null;
-            try
-            {
-                conn = new SqlConnection();
-                conn.ConnectionString = ConfigurationManager.ConnectionStrings["EWDTdbConnectionString"].ConnectionString;
-                conn.Open();
-                SqlCommand comm = new SqlCommand();
-                comm.Connection = conn;
-                comm.CommandText = "UPDATE UserAccount SET email=@email WHERE username=@username";
-                comm.Parameters.AddWithValue("@Username", u.username);
-                comm.Parameters.AddWithValue("@email", u.email);
-                rowsupdated = comm.ExecuteNonQuery();
-                conn.Close();
-            }
-            catch (SqlException e)
-            {
-                throw e;
-            }
-            return rowsupdated;
-        }
-        public static int DeleteUser(string user)
+        public static int DeleteUserProfile(string user)
         {
             int rowsdeleted = 0;
 
@@ -190,7 +96,7 @@ namespace EWDTWebService.Class
                 conn.Open();
                 SqlCommand comm = new SqlCommand();
                 comm.Connection = conn;
-                comm.CommandText = "Delete from [UserAccount] where Username=@Username";
+                comm.CommandText = "Delete * from UserProfile where Username=@Username";
                 comm.Parameters.AddWithValue("@Username", user);
                 rowsdeleted = comm.ExecuteNonQuery();
             }
@@ -201,9 +107,10 @@ namespace EWDTWebService.Class
             return rowsdeleted;
         }
 
-        public static ArrayList GetAllUnit()
+        public static int UpdateUserProfile(UserProfile u)
         {
-            ArrayList result = new ArrayList();
+            int rowsupdated = 0;
+
             SqlConnection conn = null;
             try
             {
@@ -212,28 +119,26 @@ namespace EWDTWebService.Class
                 conn.Open();
                 SqlCommand comm = new SqlCommand();
                 comm.Connection = conn;
-                comm.CommandText = "SELECT * from FloorPlan";
-                SqlDataReader dr = comm.ExecuteReader();
-                while (dr.Read())
-                {
-                    FloorPlan f = new FloorPlan();
-                    f.Unit = (string)dr["Unit"];
-                    f.UnitLevel = (int)dr["UnitLevel"];
-                    f.Name = (string)dr["Name"];
-                    f.Price = Convert.ToDouble((decimal)dr["Price"]);
-                    f.Condition = (string)dr["Condition"];
-                    f.Imagefile = (string)dr["Imagefile"];
-                    result.Add(f);
-                }
-                dr.Close();
+                comm.CommandText = "UPDATE UserProfile SET nric=@nric,Telno=@Telno,Handphno=@Handphno,gender=@gender,address=@address,DoB=@DoB,SQ1=@SQ1,SQ2=@SQ2,SQAns1=@SQAns1,SQAns2=@SQAns2";
+                comm.Parameters.AddWithValue("@nric", u.nric);
+                comm.Parameters.AddWithValue("@Telno", u.Telno);
+                comm.Parameters.AddWithValue("@Handphno", u.Handphno);
+                comm.Parameters.AddWithValue("@gender", u.gender);
+                comm.Parameters.AddWithValue("@address", u.address);
+                comm.Parameters.AddWithValue("@DoB", u.DoB);
+                comm.Parameters.AddWithValue("@SQ1", u.SQ1);
+                comm.Parameters.AddWithValue("@SQ2", u.SQ2);
+                comm.Parameters.AddWithValue("@SQAns1", u.SQAns1);
+                comm.Parameters.AddWithValue("@SQAns2", u.SQAns2);
+                rowsupdated = comm.ExecuteNonQuery();
                 conn.Close();
             }
             catch (SqlException e)
             {
                 throw e;
             }
-            return result;
+            return rowsupdated;
         }
-
+        
     }
 }
