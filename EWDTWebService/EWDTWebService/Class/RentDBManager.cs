@@ -10,9 +10,6 @@ namespace EWDTWebService.Class
 {
     public class RentDBManager
     {
-
-
-
         public static UserProfile GetProfilebyUsername(string user) //get user profile
         {
             UserProfile m = null;
@@ -24,7 +21,7 @@ namespace EWDTWebService.Class
                 conn.Open();
                 SqlCommand comm = new SqlCommand();
                 comm.Connection = conn;
-                comm.CommandText = "SELECT * FROM ewdtdb. WHERE nric=@nric";
+                comm.CommandText = "SELECT * FROM UserProfile WHERE nric=@nric";
                 comm.Parameters.AddWithValue("@username", user);
                 SqlDataReader dr = comm.ExecuteReader();
                 if (dr.Read())
