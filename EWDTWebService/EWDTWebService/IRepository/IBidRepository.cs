@@ -9,9 +9,9 @@ namespace EWDTWebService.IRepository
 {
     interface IBidRepository
     {
-        Bid GetUserByUsername(string id); //login
+        BidClass GetUserByUsername(string id); //login
         //UserAccount GetEmailbyUsername(string id); //get email
-        Bid Add(Bid item);//register
+        BidClass Add(BidClass item);//register
         void Remove(string id);//delete
         //bool UpdateUserPassword(UserAccount password);
         //bool UpdateUserEmail(UserAccount id);//update email

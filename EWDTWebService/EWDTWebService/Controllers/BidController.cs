@@ -15,9 +15,9 @@ namespace EWDTWebService.Controllers
         static readonly IBidRepository repository = new BidRepository();
 
         //Login
-        public Bid GetUserByUsername(string id)
+        public BidClass GetUserByUsername(string id)
         {
-            Bid item = repository.GetUserByUsername(id);
+            BidClass item = repository.GetUserByUsername(id);
 
             if (item == null)
             {
@@ -37,10 +37,10 @@ namespace EWDTWebService.Controllers
         //    return item;
         //}
         //register
-        public HttpResponseMessage PostUser(Bid item)
+        public HttpResponseMessage PostUser(BidClass item)
         {
             item = repository.Add(item);
-            var response = Request.CreateResponse<Bid>(HttpStatusCode.Created, item);
+            var response = Request.CreateResponse<BidClass>(HttpStatusCode.Created, item);
 
             string uri = Url.Link("DefaultApi", new { id = item.username });
             response.Headers.Location = new Uri(uri);

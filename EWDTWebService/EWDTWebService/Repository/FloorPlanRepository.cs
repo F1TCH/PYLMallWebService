@@ -13,7 +13,7 @@ namespace EWDTWebService.Repository
         {
 
         }
-        public FloorPlan Add(FloorPlan item)//register
+        public FloorPlanClass Add(FloorPlanClass item)//register
         {
             if (item == null)
             {
@@ -30,7 +30,7 @@ namespace EWDTWebService.Repository
             }
         }
 
-        public FloorPlan GetUserByUsername(string id) //login
+        public FloorPlanClass GetUserByUsername(string id) //login
         {
             return RentDBManager.GetUserbyUsername(id);
         }

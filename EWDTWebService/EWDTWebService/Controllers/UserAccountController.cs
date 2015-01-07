@@ -10,21 +10,21 @@ using EWDTWebService.IRepository;
 
 namespace EWDTWebService.Controllers
 {
-    public class UserController : ApiController
+    public class UserAccountController : ApiController
     {
         static readonly IUserAccountRepository repository = new UserAccountRepository();
 
-        //Login
-        public UserAccount GetUserByUsername(string id)
-        {
-            UserAccount item = repository.GetUserByUsername(id);
+        ////Login
+        //public UserAccount GetUserByUsername(string id)
+        //{
+        //    UserAccount item = repository(id);
 
-            if (item == null)
-            {
-                throw new HttpResponseException(HttpStatusCode.NotFound);
-            }
-            return item;
-        }
+        //    if (item == null)
+        //    {
+        //        throw new HttpResponseException(HttpStatusCode.NotFound);
+        //    }
+        //    return item;
+        //}
 
         //public UserAccount GetEmailbyUsername(string id)
         //{

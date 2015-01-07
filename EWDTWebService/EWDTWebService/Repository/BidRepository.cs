@@ -14,7 +14,7 @@ namespace EWDTWebService.Repository
 
         }
 
-        public Bid Add(Bid item)//register
+        public BidClass Add(BidClass item)//register
         {
             if (item == null)
             {
@@ -31,7 +31,7 @@ namespace EWDTWebService.Repository
             }
         }
 
-        public Bid GetUserByUsername(string id) //login
+        public BidClass GetUserByUsername(string id) //login
         {
             return RentDBManager.GetUserbyUsername(id);
         }

@@ -9,9 +9,9 @@ namespace EWDTWebService.IRepository
 {
     interface IUserProfileRepository
     {
-        UserProfile GetUserByUsername(string id); //login
+        UserClass GetUserByUsername(string id); //login
         //UserAccount GetEmailbyUsername(string id); //get email
-        UserProfile Add(UserProfile item);//register
+        UserClass Add(UserClass item);//register
         void Remove(string id);//delete
         //bool UpdateUserPassword(UserAccount password);
         //bool UpdateUserEmail(UserAccount id);//update email

@@ -15,9 +15,9 @@ namespace EWDTWebService.Controllers
         static readonly IUserProfileRepository repository = new UserProfileRepository();
 
         //Login
-        public UserProfile GetUserByUsername(string id)
+        public UserClass GetUserByUsername(string id)
         {
-            UserProfile item = repository.GetUserByUsername(id);
+            UserClass item = repository.GetUserByUsername(id);
 
             if (item == null)
             {
@@ -37,10 +37,10 @@ namespace EWDTWebService.Controllers
         //    return item;
         //}
         //register
-        public HttpResponseMessage PostUser(UserProfile item)
+        public HttpResponseMessage PostUser(UserClass item)
         {
             item = repository.Add(item);
-            var response = Request.CreateResponse<UserProfile>(HttpStatusCode.Created, item);
+            var response = Request.CreateResponse<UserClass>(HttpStatusCode.Created, item);
 
             string uri = Url.Link("DefaultApi", new { id = item });
             response.Headers.Location = new Uri(uri);

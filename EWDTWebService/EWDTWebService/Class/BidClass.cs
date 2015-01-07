@@ -5,10 +5,11 @@ using System.Web;
 
 namespace EWDTWebService.Class
 {
-    public class Bid
+    public class BidClass
     {
-        public double BiddingAmt { get; set; }
+        public string BiddingAmt { get; set; }
         public string Date { get; set; }
         public string Time { get; set; }
+        public string Username { get; set; }
     }
 }

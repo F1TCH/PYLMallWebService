@@ -5,7 +5,7 @@ using System.Web;
 
 namespace EWDTWebService.Class
 {
-    public class FloorPlan
+    public class FloorPlanClass
     {
         public string Unit { get; set; }
         public int UnitLevel { get; set; }
