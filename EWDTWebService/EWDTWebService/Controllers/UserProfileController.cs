@@ -12,19 +12,19 @@ namespace EWDTWebService.Controllers
 {
     public class UserProfileController : ApiController
     {
-        static readonly IUserProfileRepository repository = new UserProfileRepository();
+        //static readonly IUserProfileRepository repository = new UserProfileRepository();
 
         //Login
-        public UserClass GetUserByUsername(string id)
-        {
-            UserClass item = repository.GetUserByUsername(id);
+        //public UserClass GetUserByUsername(string id)
+        //{
+        //    UserClass item = repository.GetUserByUsername(id);
 
-            if (item == null)
-            {
-                throw new HttpResponseException(HttpStatusCode.NotFound);
-            }
-            return item;
-        }
+        //    if (item == null)
+        //    {
+        //        throw new HttpResponseException(HttpStatusCode.NotFound);
+        //    }
+        //    return item;
+        //}
 
         //public UserAccount GetEmailbyUsername(string id)
         //{
@@ -37,21 +37,21 @@ namespace EWDTWebService.Controllers
         //    return item;
         //}
         //register
-        public HttpResponseMessage PostUser(UserClass item)
-        {
-            item = repository.Add(item);
-            var response = Request.CreateResponse<UserClass>(HttpStatusCode.Created, item);
+        //public HttpResponseMessage PostUser(UserClass item)
+        //{
+        //    item = repository.Add(item);
+        //    var response = Request.CreateResponse<UserClass>(HttpStatusCode.Created, item);
 
-            string uri = Url.Link("DefaultApi", new { id = item });
-            response.Headers.Location = new Uri(uri);
-            return response;
-        }
+        //    string uri = Url.Link("DefaultApi", new { id = item });
+        //    response.Headers.Location = new Uri(uri);
+        //    return response;
+        //}
 
-        public HttpResponseMessage DeleteUser(string id)
-        {
-            repository.Remove(id);
-            return new HttpResponseMessage(HttpStatusCode.NoContent);
-        }
+        //public HttpResponseMessage DeleteUser(string id)
+        //{
+        //    repository.Remove(id);
+        //    return new HttpResponseMessage(HttpStatusCode.NoContent);
+        //}
 
 
         //public bool UpdatePassword(UserAccount password)

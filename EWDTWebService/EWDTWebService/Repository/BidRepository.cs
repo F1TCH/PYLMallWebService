@@ -14,37 +14,37 @@ namespace EWDTWebService.Repository
 
         }
 
-        public BidClass Add(BidClass item)//register
-        {
-            if (item == null)
-            {
-                throw new ArgumentNullException("item");
-            }
-            if (RentDBManager.InsertUser(item) == 0)
-            {
-                return null;
-            }
+        //public BidClass Add(BidClass item)//register
+        //{
+        //    if (item == null)
+        //    {
+        //        throw new ArgumentNullException("item");
+        //    }
+        //    if (RentDBManager.InsertUser(item) == 0)
+        //    {
+        //        return null;
+        //    }
 
-            else
-            {
-                return item;
-            }
-        }
+        //    else
+        //    {
+        //        return item;
+        //    }
+        //}
 
-        public BidClass GetUserByUsername(string id) //login
-        {
-            return RentDBManager.GetUserbyUsername(id);
-        }
+        //public BidClass GetUserByUsername(string id) //login
+        //{
+        //    return RentDBManager.GetUserbyUsername(id);
+        //}
 
         //public UserAccount GetEmailbyUsername(string id) //login
         //{
         //    return RentDBManager.GetEmailbyUsername(id);
         //}
 
-        public void Remove(string id)//delete
-        {
-            RentDBManager.DeleteUser(id);
-        }
+        //public void Remove(string id)//delete
+        //{
+        //    RentDBManager.DeleteUser(id);
+        //}
 
         //public bool UpdateUserPassword(UserAccount password)
         //{

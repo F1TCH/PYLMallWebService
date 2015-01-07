@@ -66,5 +66,11 @@ namespace EWDTWebService.Repository
                 return true;
             }
         }
+
+        public bool Login(string username, string password)
+        {
+            bool result = RentDBManager.Login(username, password);
+            return result;
+        }
     }
 }

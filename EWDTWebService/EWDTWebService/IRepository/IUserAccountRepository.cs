@@ -9,10 +9,12 @@ namespace EWDTWebService.IRepository
 {
     interface IUserAccountRepository
     {
-        UserAccount GetEmail(string id); //get email
+        bool Login(string username, string password); // login
+
+        //UserAccount GetEmail(string id); //get email
         UserAccount Add(UserAccount item);//register
         void Remove(string id);//delete
-        bool UpdatePassword(UserAccount password);
-        bool UpdateEmail(UserAccount id);//update email
+        bool UpdateUserPassword(UserAccount password);
+        bool UpdateUserEmail(UserAccount id);//update email
     }
 }

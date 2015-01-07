@@ -14,17 +14,12 @@ namespace EWDTWebService.Controllers
     {
         static readonly IUserAccountRepository repository = new UserAccountRepository();
 
-        ////Login
-        //public UserAccount GetUserByUsername(string id)
-        //{
-        //    UserAccount item = repository(id);
-
-        //    if (item == null)
-        //    {
-        //        throw new HttpResponseException(HttpStatusCode.NotFound);
-        //    }
-        //    return item;
-        //}
+        //Login
+        public bool Login(string username, string password)
+        {
+            bool result = repository.Login(username, password);
+            return true;
+        }
 
         //public UserAccount GetEmailbyUsername(string id)
         //{
@@ -36,6 +31,7 @@ namespace EWDTWebService.Controllers
         //    }
         //    return item;
         //}
+
         //register
         public HttpResponseMessage PostUser(UserAccount item)
         {
@@ -54,21 +50,6 @@ namespace EWDTWebService.Controllers
         }
 
 
-        //public bool UpdatePassword(UserAccount password)
-        //{
-        //    if (password == null)
-        //    {
-        //        throw new ArgumentNullException("password");
-        //    }
-        //    if (RentDBManager.UpdateUserPassword(password) == null)
-        //    {
-        //        return false;
-        //    }
-        //    else
-        //    {
-        //        return true;
-        //    }
-        //}
         //public void PutUser(string id, UserAccount useraccount)
         //{
         //    useraccount.username = id;

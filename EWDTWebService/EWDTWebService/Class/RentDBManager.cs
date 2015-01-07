@@ -24,9 +24,9 @@ namespace EWDTWebService.Class
                 conn.Open();
                 SqlCommand comm = new SqlCommand();
                 comm.Connection = conn;
-                comm.CommandText = "SELECT * FROM UserAccount  WHERE username=@username and password=@password";
-                comm.Parameters.AddWithValue("@username", input_username);
-                comm.Parameters.AddWithValue("@password", input_password);
+                comm.CommandText = "SELECT * FROM UserAccount WHERE username=@username and password=@password";
+                comm.Parameters.AddWithValue("@username", "pyx");
+                comm.Parameters.AddWithValue("@password", "i12banidiot");
                 SqlDataReader dr = comm.ExecuteReader();
                 if (dr.Read()) //dr.Read() will return true if there is at least one row
                 {
