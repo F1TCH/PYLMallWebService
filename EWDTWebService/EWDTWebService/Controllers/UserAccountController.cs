@@ -14,49 +14,40 @@ namespace EWDTWebService.Controllers
     {
         static readonly IUserAccountRepository repository = new UserAccountRepository();
 
-        //Login
-        public bool Login(string username, string password)
+        public UserAccount GetUserByUserID(string UserID)//login
         {
-            bool result = repository.Login(username, password);
-            return true;
+            UserAccount item = repository.Login(UserID);
+            if (item == null)
+            {
+                throw new HttpResponseException(HttpStatusCode.NoContent);
+            }
+            return item;
         }
 
-        //public UserAccount GetEmailbyUsername(string id)
-        //{
-        //    UserAccount item = repository.GetEmailbyUsername(id);
-
-        //    if (item == null)
-        //    {
-        //        throw new HttpResponseException(HttpStatusCode.NotFound);
-        //    }
-        //    return item;
-        //}
-
-        //register
-        public HttpResponseMessage PostUser(UserAccount item)
+        public HttpResponseMessage PostUser(UserAccount item)//register
         {
-            item = repository.Add(item);
+            item = repository.Register(item);
             var response = Request.CreateResponse<UserAccount>(HttpStatusCode.Created, item);
 
-            string uri = Url.Link("DefaultApi", new { id = item.username });
+            string uri = Url.Link("DefaultApi", new { username = item.username });
             response.Headers.Location = new Uri(uri);
             return response;
         }
 
-        public HttpResponseMessage DeleteUser(string id)
+        public void PutUser(string id, UserAccount user)
         {
-            repository.Remove(id);
-            return new HttpResponseMessage(HttpStatusCode.NoContent);
+            user.username = id;
+
+            if (!repository.UpdateUser(user))
+            {
+                throw new HttpResponseException(HttpStatusCode.NotFound);
+            }
         }
 
-
-        //public void PutUser(string id, UserAccount useraccount)
-        //{
-        //    useraccount.username = id;
-        //    if(!repository.UpdateUserEmail(useraccount))
-        //    {
-        //        throw new HttpResponseException(HttpStatusCode.NotFound);
-        //    }
-        //}
+        public HttpResponseMessage DeleteUser(string id)
+        {
+            repository.DeleteUser(id);
+            return new HttpResponseMessage(HttpStatusCode.NoContent);
+        }
     }
 }

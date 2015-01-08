@@ -11,10 +11,9 @@ namespace EWDTWebService.Class
     public class RentDBManager
     {
         //Login CRUD//
-        public static bool Login(string input_username, string input_password)
+        public static UserAccount Login(string input_username)
         {
-            bool successful = false;
-
+            UserAccount u = null;
             SqlConnection conn = null;
             try
             {
@@ -24,21 +23,25 @@ namespace EWDTWebService.Class
                 conn.Open();
                 SqlCommand comm = new SqlCommand();
                 comm.Connection = conn;
-                comm.CommandText = "SELECT * FROM UserAccount WHERE username=@username and password=@password";
-                comm.Parameters.AddWithValue("@username", "pyx");
-                comm.Parameters.AddWithValue("@password", "i12banidiot");
+                comm.CommandText = "SELECT * FROM UserAccount WHERE username=@username";
+                comm.Parameters.AddWithValue("@username", input_username);
                 SqlDataReader dr = comm.ExecuteReader();
                 if (dr.Read()) //dr.Read() will return true if there is at least one row
                 {
-                    successful = true;
+                    u = new UserAccount();
+                    u.username = (string)dr["username"];
+                    u.password = (string)dr["password"];
+                    u.email = (string)dr["email"];
                 }
+                dr.Close();
+                conn.Close();
             }
             catch (SqlException e)
             {
                 throw e;
             }
 
-            return successful;
+            return u;
         }
 
         public static int Register(UserAccount u)
@@ -67,7 +70,7 @@ namespace EWDTWebService.Class
             return rowsinserted;
         }
 
-        public static int UpdateEmail(UserAccount u)
+        public static int Update(UserAccount u)
         {
 
             int rowsinserted = 0;
@@ -80,32 +83,8 @@ namespace EWDTWebService.Class
                 conn.Open();
                 SqlCommand comm = new SqlCommand();
                 comm.Connection = conn;
-                comm.CommandText = "UPDATE UserAccount SET email=@email where username = @username";
+                comm.CommandText = "UPDATE UserAccount SET email=@email, password=@password where username = @username";
                 comm.Parameters.AddWithValue("@email", u.email);
-                comm.Parameters.AddWithValue("@username", u.username);
-                rowsinserted = comm.ExecuteNonQuery();
-            }
-            catch (SqlException e)
-            {
-                throw e;
-            }
-            return rowsinserted;
-        }
-
-        public static int UpdatePassword(UserAccount u)
-        {
-
-            int rowsinserted = 0;
-
-            SqlConnection conn = null;
-            try
-            {
-                conn = new SqlConnection();
-                conn.ConnectionString = ConfigurationManager.ConnectionStrings["EWDTdbConnectionString"].ConnectionString;
-                conn.Open();
-                SqlCommand comm = new SqlCommand();
-                comm.Connection = conn;
-                comm.CommandText = "UPDATE UserAccount SET password=@password where username = @username";
                 comm.Parameters.AddWithValue("@password", u.password);
                 comm.Parameters.AddWithValue("@username", u.username);
                 rowsinserted = comm.ExecuteNonQuery();
@@ -272,21 +251,21 @@ namespace EWDTWebService.Class
                 SqlDataReader dr = comm.ExecuteReader();
                 while (dr.Read())
                 {
-
+                    b = new UserClass();
                     b.NRIC = (string)dr["nric"];
                     b.TelephoneNo = (int)dr["Telno"];
                     b.HandphoneNo = (int)dr["Handphno"];
                     b.Gender = (string)dr["Gender"];
                 }
-
                 dr.Close();
                 conn.Close();
-                return b;
             }
             catch (SqlException e)
             {
                 throw e;
             }
+
+            return b;
         }
 
         public static int DeleteProfile(string username)
