@@ -14,68 +14,40 @@ namespace EWDTWebService.Controllers
     {
         static readonly IBidRepository repository = new BidRepository();
 
-        //Login
-        //public BidClass GetUserByUsername(string id)
-        //{
-        //    BidClass item = repository.GetUserByUsername(id);
+        public BidClass GetBid(string UserID)
+        {
+            BidClass item = repository.RetrieveBid(UserID);
+            if (item == null)
+            {
+                throw new HttpResponseException(HttpStatusCode.NotFound);
+            }
+            return item;
+        }
 
-        //    if (item == null)
-        //    {
-        //        throw new HttpResponseException(HttpStatusCode.NotFound);
-        //    }
-        //    return item;
-        //}
+        public HttpResponseMessage PostBid(BidClass item)
+        {
+            item = repository.Bid(item);
+            var response = Request.CreateResponse<BidClass>(HttpStatusCode.Created, item);
 
-        //public UserAccount GetEmailbyUsername(string id)
-        //{
-        //    UserAccount item = repository.GetEmailbyUsername(id);
+            string uri = Url.Link("DefaultApi", new { username = item.Username });
+            response.Headers.Location = new Uri(uri);
+            return response;
+        }
 
-        //    if (item == null)
-        //    {
-        //        throw new HttpResponseException(HttpStatusCode.NotFound);
-        //    }
-        //    return item;
-        //}
-        //register
-        //public HttpResponseMessage PostUser(BidClass item)
-        //{
-        //    item = repository.Add(item);
-        //    var response = Request.CreateResponse<BidClass>(HttpStatusCode.Created, item);
+        public void PutBid(string id, BidClass user)
+        {
+            //user.Username = id;
 
-        //    string uri = Url.Link("DefaultApi", new { id = item.username });
-        //    response.Headers.Location = new Uri(uri);
-        //    return response;
-        //}
+            if (!repository.UpdateBid(user))
+            {
+                throw new HttpResponseException(HttpStatusCode.NotFound);
+            }
+        }
 
-        //public HttpResponseMessage DeleteUser(string id)
-        //{
-        //    repository.Remove(id);
-        //    return new HttpResponseMessage(HttpStatusCode.NoContent);
-        //}
-
-
-        //public bool UpdatePassword(UserAccount password)
-        //{
-        //    if (password == null)
-        //    {
-        //        throw new ArgumentNullException("password");
-        //    }
-        //    if (RentDBManager.UpdateUserPassword(password) == null)
-        //    {
-        //        return false;
-        //    }
-        //    else
-        //    {
-        //        return true;
-        //    }
-        //}
-        //public void PutUser(string id, UserAccount useraccount)
-        //{
-        //    useraccount.username = id;
-        //    if(!repository.UpdateUserEmail(useraccount))
-        //    {
-        //        throw new HttpResponseException(HttpStatusCode.NotFound);
-        //    }
-        //}
+        public HttpResponseMessage DeleteBid(string id)
+        {
+            repository.DeleteBid(id);
+            return new HttpResponseMessage(HttpStatusCode.NoContent);
+        }
     }
 }

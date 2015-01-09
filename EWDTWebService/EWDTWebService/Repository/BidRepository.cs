@@ -9,72 +9,53 @@ namespace EWDTWebService.Repository
 {
     public class BidRepository : IBidRepository
     {
-        public BidRepository()
+          public BidRepository()
         {
 
         }
 
-        //public BidClass Add(BidClass item)//register
-        //{
-        //    if (item == null)
-        //    {
-        //        throw new ArgumentNullException("item");
-        //    }
-        //    if (RentDBManager.InsertUser(item) == 0)
-        //    {
-        //        return null;
-        //    }
+        public BidClass Bid(BidClass item)
+        {
+            if (item == null)
+            {
+                throw new ArgumentNullException("item");
+            }
+            if (RentDBManager.CreateBid(item) == 0)
+            {
+                return null;
+            }
+            else
+            {
+                return item;
+            }
+            //return item;
+        }
 
-        //    else
-        //    {
-        //        return item;
-        //    }
-        //}
 
-        //public BidClass GetUserByUsername(string id) //login
-        //{
-        //    return RentDBManager.GetUserbyUsername(id);
-        //}
+        public BidClass RetrieveBid(string userID)
+        {
+            return RentDBManager.RetrieveBid(userID);
+        }
 
-        //public UserAccount GetEmailbyUsername(string id) //login
-        //{
-        //    return RentDBManager.GetEmailbyUsername(id);
-        //}
+        public bool UpdateBid(BidClass item)
+        {
+            if (item == null)
+            {
+                throw new ArgumentNullException("item");
+            }
+            if (RentDBManager.UpdateBid(item) == 0)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
 
-        //public void Remove(string id)//delete
-        //{
-        //    RentDBManager.DeleteUser(id);
-        //}
-
-        //public bool UpdateUserPassword(UserAccount password)
-        //{
-        //    if (password == null)
-        //    {
-        //        throw new ArgumentNullException("password");
-        //    }
-        //    if (RentDBManager.UpdateUserPassword(password) == 0)
-        //    {
-        //        return false;
-        //    }
-        //    else
-        //    {
-        //        return true;
-        //    }
-        //}
-        //public bool UpdateUserEmail(UserAccount email)
-        //{
-        //    if (email == null)
-        //    {
-        //        throw new ArgumentNullException("email");
-        //    }
-        //    if (RentDBManager.UpdateUserEmail(email) == 0)
-        //    {
-        //        return false;
-        //    }
-        //    else
-        //    {
-        //        return true;
-        //    }
-        //}
+        public void DeleteBid(string id)
+        {
+            RentDBManager.DeleteBid(id);
+        }
     }
 }

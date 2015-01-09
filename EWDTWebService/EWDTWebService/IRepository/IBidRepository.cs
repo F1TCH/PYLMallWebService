@@ -15,5 +15,10 @@ namespace EWDTWebService.IRepository
         //void Remove(string id);//delete
         ////bool UpdateUserPassword(UserAccount password);
         ////bool UpdateUserEmail(UserAccount id);//update email
+
+        BidClass Bid(BidClass item);
+        bool UpdateBid(BidClass item);
+        BidClass RetrieveBid(string userID);
+        void DeleteBid(string id);
     }
 }
