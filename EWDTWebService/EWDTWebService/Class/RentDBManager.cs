@@ -96,60 +96,6 @@ namespace EWDTWebService.Class
             return rowsinserted;
         }
 
-        public static string GetPassword(UserAccount u)
-        {
-            SqlConnection conn = null;
-            try
-            {
-                conn = new SqlConnection();
-                conn.ConnectionString = ConfigurationManager.ConnectionStrings["EWDTdbConnectionString"].ConnectionString;
-                conn.Open();
-                SqlCommand comm = new SqlCommand();
-                comm.Connection = conn;
-                comm.CommandText = "SELECT password FROM UserAccount where username = @username";
-                comm.Parameters.AddWithValue("@username", u.username);
-                SqlDataReader dr = comm.ExecuteReader();
-                if (dr.Read())
-                {
-                    return dr.GetString(0);
-                }
-                dr.Close();
-                conn.Close();
-            }
-            catch (SqlException e)
-            {
-                throw e;
-            }
-            return "";
-        }
-
-        public static string GetEmail(string username)
-        {
-            SqlConnection conn = null;
-            try
-            {
-                conn = new SqlConnection();
-                conn.ConnectionString = ConfigurationManager.ConnectionStrings["EWDTdbConnectionString"].ConnectionString;
-                conn.Open();
-                SqlCommand comm = new SqlCommand();
-                comm.Connection = conn;
-                comm.CommandText = "SELECT email FROM UserAccount where username = @username";
-                comm.Parameters.AddWithValue("@username", username);
-                SqlDataReader dr = comm.ExecuteReader();
-                if (dr.Read())
-                {
-                    return dr.GetString(0);
-                }
-                dr.Close();
-                conn.Close();
-            }
-            catch (SqlException e)
-            {
-                throw e;
-            }
-            return "";
-        }
-
         public static int DeleteAccount(string username)
         {
             int rowsdeleted = 0;
@@ -280,7 +226,7 @@ namespace EWDTWebService.Class
                 conn.Open();
                 SqlCommand comm = new SqlCommand();
                 comm.Connection = conn;
-                comm.CommandText = "DELETE FROM UserAccount where username=@username";
+                comm.CommandText = "DELETE FROM UserProfile where username=@username";
                 comm.Parameters.AddWithValue("@username", username);
                 rowsdeleted = comm.ExecuteNonQuery();
             }
